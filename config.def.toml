@@ -1,0 +1,14 @@
+# To configure and run your Aternos bot, copy or rename this config
+# file to "config.toml" and fill out all required fields.
+
+[aternos]
+
+  # Aternos credentials.
+  username = ""
+  password = ""
+
+[discord]
+
+  # Discord bot authentication token. Generate one from the Discord
+  # Developer Portal at https://discord.com/developers/.
+  bot_token = ""

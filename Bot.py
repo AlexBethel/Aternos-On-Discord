@@ -1,22 +1,26 @@
 import discord
 import os
 import sys
+import toml
 import asyncio
 from dotenv import load_dotenv
 from discord.ext import tasks
-from Configure import launch_config
 from connect_and_launch import get_status, get_number_of_players
 from connect_and_launch import connect_account, get_server_info
 from connect_and_launch import start_server, stop_server
 
-if not os.path.exists(os.path.relpath(".env")):
-    launch_config()
-    sys.exit()
+config = None
+try:
+    config = toml.load("config.toml")
+except FileNotFoundError:
+    print("Missing config.toml.")
+    print("Copy or rename 'config.def.toml' to 'config.toml', then")
+    print("fill out each of the fields.")
+    sys.exit(1)
 
-load_dotenv()
-USER = os.getenv('USERNAME_C')
-PASSWORD = os.getenv('PASSWORD_C')
-BOT_TOKEN = os.getenv("BOT_TOKEN")
+USER = config["aternos"]["username"]
+PASSWORD = config["aternos"]["password"]
+BOT_TOKEN = config["discord"]["bot_token"]
 
 client = discord.Client()
 

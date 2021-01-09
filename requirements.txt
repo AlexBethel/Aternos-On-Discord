@@ -13,7 +13,6 @@ idna==2.8
 lxml==4.5.0
 multidict==4.7.4
 pbr==5.4.5
-python-dotenv==0.11.0
 PyYAML==5.3.1
 requests==2.22.0
 selenium==3.141.0
@@ -23,3 +22,4 @@ stevedore==3.2.0
 urllib3==1.25.8
 websockets==8.1
 yarl==1.4.2
+toml==0.10.2
