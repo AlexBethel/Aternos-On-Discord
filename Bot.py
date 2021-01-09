@@ -109,7 +109,7 @@ async def on_message(message):
         elif message.content.lower() == f'{PREFIX}help':
             embed = discord.Embed(title="Help")
             embed.add_field(name=f"{PREFIX}start",
-                            value="Launches the server",
+                            value="Starts the server",
                             inline=False)
             embed.add_field(name=f"{PREFIX}stop",
                             value="Stops the server",
