@@ -12,3 +12,7 @@
   # Discord bot authentication token. Generate one from the Discord
   # Developer Portal at https://discord.com/developers/.
   bot_token = ""
+
+  # The prefix users to invoke commands. With the default ("--"),
+  # users type things like "--help" to get help.
+  prefix = "--"

@@ -21,13 +21,14 @@ except FileNotFoundError:
 USER = config["aternos"]["username"]
 PASSWORD = config["aternos"]["password"]
 BOT_TOKEN = config["discord"]["bot_token"]
+PREFIX = config["discord"]["prefix"]
 
 client = discord.Client()
 
 
 @client.event
 async def on_ready():
-    text = "Logging into Aternos... | --help"
+    text = f"Logging into Aternos... | {PREFIX}help"
     await client.change_presence(activity=discord.Game(name=text))
 
     connect_account(USER, PASSWORD)  # logs into aternos
@@ -42,9 +43,10 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.startswith('--'):
+    if message.content.startswith(PREFIX):
 
-        if message.content.lower() == '--launch server':
+        command = message.content[len(PREFIX):]
+        if command.lower() == 'launch server':
 
             await message.channel.send("Launching Server...")
             status = get_status()
@@ -78,15 +80,15 @@ async def on_message(message):
                 await message.channel.send(text)
                 await start_server()
 
-        elif message.content.lower() == '--server status':
+        elif command.lower() == 'server status':
             await message.channel.send("The server is " \
                                        f"{get_status().lower()}.")
 
-        elif message.content.lower() == '--players':
+        elif command.lower() == 'players':
             text = f"There are {get_number_of_players()} players online."
             await message.channel.send(text)
 
-        elif message.content.lower() == '--server info':
+        elif command.lower() == 'server info':
             ip, status, players, software, version = get_server_info()
             text = f"**IP:** {ip} \n**Status:** {status} \n**Players: " \
                    f"**{players} \n**Version:** {software} {version}"
@@ -94,7 +96,7 @@ async def on_message(message):
             embed.add_field(name="Server Info", value=text, inline=False)
             await message.channel.send(embed=embed)
 
-        elif message.content.lower() == '--stop server':
+        elif command.lower() == 'stop server':
             await message.channel.send("Stopping the server.")
             status = get_status()
 
@@ -104,37 +106,37 @@ async def on_message(message):
             else:
                 await message.channel.send("The server is already offline.")
 
-        elif message.content.lower() == '--help':
+        elif message.content.lower() == f'{PREFIX}help':
             embed = discord.Embed(title="Help")
-            embed.add_field(name="--launch server",
+            embed.add_field(name=f"{PREFIX}launch server",
                             value="Launches the server",
                             inline=False)
-            embed.add_field(name="--server status",
+            embed.add_field(name=f"{PREFIX}server status",
                             value="Gets the server status",
                             inline=False)
-            embed.add_field(name="--server info",
+            embed.add_field(name=f"{PREFIX}server info",
                             value="Gets the server info",
                             inline=False)
-            embed.add_field(name="--players",
+            embed.add_field(name=f"{PREFIX}players",
                             value="Gets the number of players",
                             inline=False)
-            embed.add_field(name="--stop server",
+            embed.add_field(name=f"{PREFIX}stop server",
                             value="Stops the server",
                             inline=False)
-            embed.add_field(name="--help",
+            embed.add_field(name=f"{PREFIX}help",
                             value="Displays this message",
                             inline=False)
             await message.channel.send(embed=embed)
 
         else:
-            await message.channel.send("Unknown command, use --help to see a "
-                                       "list of all avaliable commands.")
+            await message.channel.send("Unknown command, use {PREFIX}help to "
+                                       "see a list of all avaliable commands.")
 
 
 @tasks.loop(seconds=5.0)
 async def serverStatus():
     text = f"Server: {get_status()} | Players: {get_number_of_players()} | " \
-           f"--help"
+           f"{PREFIX}help"
     activity = discord.Activity(type=discord.ActivityType.watching, name=text)
     await client.change_presence(activity=activity)
 
