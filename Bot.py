@@ -73,8 +73,8 @@ async def on_message(message):
                 await start_server()
 
         elif message.content.lower() == '--server status':
-            await message.channel.send(f"The server is " \
-                                       "{get_status().lower()}.")
+            await message.channel.send("The server is " \
+                                       f"{get_status().lower()}.")
 
         elif message.content.lower() == '--players':
             text = f"There are {get_number_of_players()} players online."
