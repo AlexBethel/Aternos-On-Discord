@@ -19,11 +19,11 @@ A simple tool to serve your own discord bot so you can manage an Aternos server 
 
 ### Discord Commands
 
-* --launch server
-* --server status
-* --server info
+* --start
+* --stop
+* --status
+* --info
 * --players
-* --stop server
 * --help
 
 
