@@ -14,6 +14,8 @@ if not os.path.exists(os.path.relpath(".env")):
     sys.exit()
 
 load_dotenv()
+USER = os.getenv('USERNAME_C')
+PASSWORD = os.getenv('PASSWORD_C')
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 client = discord.Client()
@@ -24,7 +26,7 @@ async def on_ready():
     text = "Logging into Aternos... | --help"
     await client.change_presence(activity=discord.Game(name=text))
 
-    connect_account()  # logs into aternos
+    connect_account(USER, PASSWORD)  # logs into aternos
     print('The bot is logged in as {0.user}'.format(client))
     await asyncio.sleep(2)
     serverStatus.start()  # starts the presence update loop

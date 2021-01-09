@@ -6,9 +6,6 @@ from selenium.common.exceptions import ElementNotInteractableException
 from dotenv import load_dotenv
 from chromedriver_py import binary_path
 
-load_dotenv()
-USER = os.getenv('USERNAME_C')
-PASSWORD = os.getenv('PASSWORD_C')
 URL = "https://aternos.org/go/"
 
 # chrome variables
@@ -77,15 +74,15 @@ def get_server_info():
     return server_ip, get_status(), get_number_of_players(), software, version
 
 
-def connect_account():
+def connect_account(user, password):
     """ Connects to the accounts through a headless chrome tab so we don't
         have to do it every time we want to start or stop the server."""
     driver.get(URL)
     # login to aternos
     element = driver.find_element_by_xpath('//*[@id="user"]')
-    element.send_keys(USER)
+    element.send_keys(user)
     element = driver.find_element_by_xpath('//*[@id="password"]')
-    element.send_keys(PASSWORD)
+    element.send_keys(password)
     element = driver.find_element_by_xpath('//*[@id="login"]')
     element.click()
     time.sleep(2)
