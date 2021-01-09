@@ -55,7 +55,7 @@ async def on_message(message):
                         break
 
             elif status == "Online":
-                await message.channel.send("The server is already Online.")
+                await message.channel.send("The server is already online.")
 
             elif status == 'Starting ...' or status == 'Loading ...':
                 text = "The server is already starting..."
@@ -73,7 +73,8 @@ async def on_message(message):
                 await start_server()
 
         elif message.content.lower() == '--server status':
-            await message.channel.send(f"The server is {get_status()}.")
+            await message.channel.send(f"The server is " \
+                                       "{get_status().lower()}.")
 
         elif message.content.lower() == '--players':
             text = f"There are {get_number_of_players()} players online."
@@ -95,7 +96,7 @@ async def on_message(message):
                 await stop_server()
 
             else:
-                await message.channel.send("The server is already Offline.")
+                await message.channel.send("The server is already offline.")
 
         elif message.content.lower() == '--help':
             embed = discord.Embed(title="Help")
