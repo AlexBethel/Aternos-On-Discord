@@ -114,19 +114,10 @@ async def on_message(message):
             embed.add_field(name="--stop server",
                             value="Stops the server",
                             inline=False)
-            embed.add_field(name="--crash",
-                            value="Shuts down the bot",
-                            inline=False)
             embed.add_field(name="--help",
                             value="Displays this message",
                             inline=False)
             await message.channel.send(embed=embed)
-
-        elif message.content == '--crash':
-            quitBrowser()
-            text = "Bot Shutting Down..."
-            await client.change_presence(activity=discord.Game(name=text))
-            sys.exit()
 
         else:
             await message.channel.send("Unknown command, use --help to see a "
