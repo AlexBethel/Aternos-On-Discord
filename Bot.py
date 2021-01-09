@@ -46,7 +46,7 @@ async def on_message(message):
     if message.content.startswith(PREFIX):
 
         command = message.content[len(PREFIX):]
-        if command.lower() == 'launch server':
+        if command.lower() == 'start':
 
             await message.channel.send("Launching Server...")
             status = get_status()
@@ -80,7 +80,7 @@ async def on_message(message):
                 await message.channel.send(text)
                 await start_server()
 
-        elif command.lower() == 'server status':
+        elif command.lower() == 'status':
             await message.channel.send("The server is " \
                                        f"{get_status().lower()}.")
 
@@ -88,7 +88,7 @@ async def on_message(message):
             text = f"There are {get_number_of_players()} players online."
             await message.channel.send(text)
 
-        elif command.lower() == 'server info':
+        elif command.lower() == 'info':
             ip, status, players, software, version = get_server_info()
             text = f"**IP:** {ip} \n**Status:** {status} \n**Players: " \
                    f"**{players} \n**Version:** {software} {version}"
@@ -96,7 +96,7 @@ async def on_message(message):
             embed.add_field(name="Server Info", value=text, inline=False)
             await message.channel.send(embed=embed)
 
-        elif command.lower() == 'stop server':
+        elif command.lower() == 'stop':
             await message.channel.send("Stopping the server.")
             status = get_status()
 
@@ -108,20 +108,20 @@ async def on_message(message):
 
         elif message.content.lower() == f'{PREFIX}help':
             embed = discord.Embed(title="Help")
-            embed.add_field(name=f"{PREFIX}launch server",
+            embed.add_field(name=f"{PREFIX}start",
                             value="Launches the server",
                             inline=False)
-            embed.add_field(name=f"{PREFIX}server status",
+            embed.add_field(name=f"{PREFIX}stop",
+                            value="Stops the server",
+                            inline=False)
+            embed.add_field(name=f"{PREFIX}status",
                             value="Gets the server status",
                             inline=False)
-            embed.add_field(name=f"{PREFIX}server info",
+            embed.add_field(name=f"{PREFIX}info",
                             value="Gets the server info",
                             inline=False)
             embed.add_field(name=f"{PREFIX}players",
                             value="Gets the number of players",
-                            inline=False)
-            embed.add_field(name=f"{PREFIX}stop server",
-                            value="Stops the server",
                             inline=False)
             embed.add_field(name=f"{PREFIX}help",
                             value="Displays this message",
