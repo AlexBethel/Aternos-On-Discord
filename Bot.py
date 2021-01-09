@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from discord.ext import tasks
 from Configure import launch_config
 from connect_and_launch import get_status, get_number_of_players
-from connect_and_launch import connect_account, quitBrowser, get_server_info
+from connect_and_launch import connect_account, get_server_info
 from connect_and_launch import start_server, stop_server
 
 if not os.path.exists(os.path.relpath(".env")):
@@ -78,7 +78,7 @@ async def on_message(message):
         elif message.content.lower() == '--players':
             text = f"There are {get_number_of_players()} players online."
             await message.channel.send(text)
-        
+
         elif message.content.lower() == '--server info':
             ip, status, players, software, version = get_server_info()
             text = f"**IP:** {ip} \n**Status:** {status} \n**Players: " \
