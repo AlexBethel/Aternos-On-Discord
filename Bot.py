@@ -1,9 +1,7 @@
 import discord
-import os
 import sys
 import toml
 import asyncio
-from dotenv import load_dotenv
 from discord.ext import tasks
 from connect_and_launch import get_status, get_number_of_players
 from connect_and_launch import connect_account, get_server_info
@@ -81,7 +79,7 @@ async def on_message(message):
                 await start_server()
 
         elif command.lower() == 'status':
-            await message.channel.send("The server is " \
+            await message.channel.send("The server is "
                                        f"{get_status().lower()}.")
 
         elif command.lower() == 'players':

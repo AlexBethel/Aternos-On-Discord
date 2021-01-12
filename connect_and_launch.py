@@ -1,9 +1,7 @@
 import asyncio
 import time
-import os
 from selenium import webdriver
 from selenium.common.exceptions import ElementNotInteractableException
-from dotenv import load_dotenv
 from chromedriver_py import binary_path
 
 URL = "https://aternos.org/go/"
