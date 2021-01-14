@@ -109,13 +109,22 @@ async def cmd_unknown(message):
                                f"see a list of all avaliable commands.")
 
 
-# Finds a command whose name matches the given text.
+# Finds a command whose name matches the given text. Returns None if
+# no command matches or if the text is an ambiguous abbreviation
+# between two or more commands.
 def match_command(text):
+    match = None
     for cmd in commands:
         if cmd['name'] == text:
             return cmd
+        elif cmd['name'].startswith(text):
+            if match:
+                # More than one possible match
+                return None
 
-    return None
+            match = cmd
+
+    return match
 
 
 # Runs a command with the given source message, which must begin with
