@@ -73,7 +73,7 @@ async def cmd_start(message):
         text = ("An error occurred. Either the status server is not "
                 "responding or you didn't set the server name "
                 "correctly.\n\nTrying to launch the server anyways.")
-    await message.channel.send(text)
+        await message.channel.send(text)
     await start_server()
 
 
