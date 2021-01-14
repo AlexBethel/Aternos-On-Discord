@@ -139,6 +139,7 @@ async def cmd_unknown(message):
 # no command matches or if the text is an ambiguous abbreviation
 # between two or more commands.
 def match_command(text):
+    text = text.strip()
     match = None
     for cmd in commands:
         if cmd['name'] == text:
