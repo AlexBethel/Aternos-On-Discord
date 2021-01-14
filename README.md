@@ -19,6 +19,8 @@ A simple tool to serve your own discord bot so you can manage an Aternos server 
 
 ### Discord Commands
 
+All these commands can be abbreviated using non-ambiguous substrings. For example, "--i" and "--in" are synonymous with "--info", but "--st" is an error because it could mean any of "--status", "--stop" or "--start".
+
 * --start
 * --stop
 * --status
