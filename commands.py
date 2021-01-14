@@ -74,7 +74,7 @@ async def cmd_start(message):
                 "responding or you didn't set the server name "
                 "correctly.\n\nTrying to launch the server anyways.")
         await message.channel.send(text)
-    await start_server()
+        await start_server()
 
 
 @command("stop", "Stops the server")
