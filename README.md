@@ -16,6 +16,7 @@ A simple tool to serve your own discord bot so you can manage an Aternos server 
 * Python 3.7 or higher
 * A Discord server for which you have the rights to add a bot (Manage Server permission)
 * An Aternos account
+* Either the Chrome or Chromium browser
 
 ### Discord Commands
 
