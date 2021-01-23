@@ -1,5 +1,6 @@
 import asyncio
 import time
+from config import USER, PASSWORD
 from selenium import webdriver
 from selenium.common.exceptions import ElementNotInteractableException
 from chromedriver_py import binary_path
@@ -102,6 +103,11 @@ def connect_account(user, password):
         time.sleep(3)
 
     print("Headless Tab Ready")
+
+
+def restart_browser():
+    quitBrowser()
+    connect_account(USER, PASSWORD)
 
 
 async def stop_server():
