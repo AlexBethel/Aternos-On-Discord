@@ -2,13 +2,14 @@ import asyncio
 import time
 from selenium import webdriver
 from selenium.common.exceptions import ElementNotInteractableException
+from selenium.common.exceptions import NoSuchElementException
 from chromedriver_py import binary_path
 
 URL = "https://aternos.org/go/"
 
 # chrome variables
 adblock = False  # for those with network wide ad blockers
-headless = True  # if you want a headless window
+headless = False  # if you want a headless window
 
 options = webdriver.ChromeOptions()
 if headless:
@@ -56,8 +57,15 @@ def get_status():
 
 def get_number_of_players():
     """ Returns the number of players as a string."""
-    element = driver.find_element_by_xpath('//*[@id="players"]')
-    return element.text
+    try:
+        element = driver.find_element_by_xpath('//*[@id="players"]')
+        return element.text
+
+    except NoSuchElementException:
+        # The number of players is not on the webpage, which happens
+        # when the server is not running. As such, there are obviously
+        # zero players online.
+        return "0"
 
 
 def get_server_info():
