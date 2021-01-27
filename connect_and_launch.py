@@ -9,7 +9,7 @@ URL = "https://aternos.org/go/"
 
 # chrome variables
 adblock = False  # for those with network wide ad blockers
-headless = False  # if you want a headless window
+headless = True  # if you want a headless window
 
 options = webdriver.ChromeOptions()
 if headless:
