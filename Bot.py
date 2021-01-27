@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from commands import run_command
 from config import USER, PASSWORD, BOT_TOKEN, PREFIX
 from connect_and_launch import connect_account
